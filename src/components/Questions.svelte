@@ -146,7 +146,7 @@
         justify-content: center;
         align-items: center;
         display: flex;
-        background-color: #042940;
+        background-color: #0a5c93;
         color: white;
         border-radius: 30px;
         margin-top: 20px;
@@ -158,7 +158,7 @@
         justify-content: center;
         align-items: center;
         display: flex;
-        background-color: #005C53;
+        background-color: #ff7f08;
         color: white;
         border-radius: 30px;
         margin-top: 20px;
