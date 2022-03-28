@@ -1,18 +1,31 @@
 <script>
 	import Questions from "./components/Questions.svelte"
+	import FillBlank from "./components/FillBlank.svelte"
 
+	let test = true
+
+	$: handleClickTrue = () =>{
+		test = true
+	}
+	$: handleClickFalse = () =>{
+		test = false
+	}
 </script>
 
 <div class="main-card">
 	<div class="row">
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-			<button class="test-game">Test Game</button>
+			<button class="test-game" on:click={handleClickTrue()}>Test Game</button>
 		</div>
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-			<button class="input-game">İnput Game</button>
+			<button class="input-game" on:click={handleClickFalse()}>İnput Game</button>
 		</div>
 	</div>
+	{#if test}
 	<Questions/>	
+	{:else}
+	<FillBlank/>
+	{/if}
 </div>
 
 
@@ -28,7 +41,7 @@
 	border-radius: 20px;
 	width: 100%;
 	height: 100%;
-	background-color: #fffba5;
+	background-color: #DFDFDE;
 }
 .test-game{
 	width: 200px;
@@ -36,7 +49,7 @@
 	margin-left: 20px;
 	margin-top: 20px;
 	border-radius: 10px;
-	background-color: aqua;
+	background-color: #F7F5F2;
 }
 .input-game{
 	width: 200px;
@@ -44,6 +57,6 @@
 	margin-left: 20px;
 	margin-top: 20px;
 	border-radius: 10px;
-	background-color: aqua;
+	background-color: #F7F5F2;
 }
 </style>
