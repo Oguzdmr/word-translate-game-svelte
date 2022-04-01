@@ -5,6 +5,7 @@
 let words = []
 let index = 0
 let inputWord = '';
+let scor = 0;
 
 function checkResult(){
     return words[index].correctOption === inputWord
@@ -19,10 +20,33 @@ Store.subscribe((data)=>{
     }
     $: reset = () => {
         index = 0
+        scor=0
     }
 
+    $: swalFunction = () => {
+        if(checkResult()){
+            scor +=10;
+            Swal.fire({
+                icon: 'success',
+                title: 'Doğru Cevap',
+                text: 'Doğru Cevap: ' + words[index].correctOption,
+            }).then(function() {
+                handleClick() ;
+            })
+        }else{
+            scor -=5;
+            Swal.fire({
+                icon: 'error',
+                title: 'Yanlış Cevap',
+                text: 'Doğru Cevap: ' + words[index].correctOption,
+            }).then(function() {
+                handleClick() ;
+            })
+        }
+    }
 </script>
 
+{#if index !== words.length}
 <div class="row justify-content-center d-flex">
     <div class="col-md-12 col-lg-12" >
         <div class="card-word"  >
@@ -32,20 +56,15 @@ Store.subscribe((data)=>{
     <div class="col-md-12 col-lg-12 d-flex justify-content-center" >
         <input bind:value={inputWord} type="text">
     </div>
-    <button class="send-answer" on:click={()=>{checkResult() ?  Swal.fire({
-        icon: 'success',
-        title: 'Doğru Cevap',
-        text: 'Doğru Cevap: ' + words[index].correctOption,
-        }).then(function() {
-            handleClick() ;
-        }):  Swal.fire({
-            icon: 'error',
-            title: 'Yanlış Cevap',
-            text: 'Doğru Cevap: ' + words[index].correctOption,
-            }).then(function() {
-                handleClick() ;
-            });}} >Kontrol Et</button>
+    <button class="button-redirect" on:click={()=>swalFunction()} >Kontrol Et</button>
+    <br>
+    <h4>Scor: {scor}</h4>
 </div>
+{:else}
+    <h4>Puanınız: {scor}</h4>
+    <h5>Başka Soru Bulunmamaktadır.</h5>
+    <button class="button-redirect" on:click={reset}>Yeniden Çalış</button>
+{/if}
 
 <style>
 
@@ -76,7 +95,7 @@ Store.subscribe((data)=>{
         justify-content: center;
         align-items: center;
     }
-    .send-answer{
+    .button-redirect{
         width: 200px;
         height: 50px;
         margin-left: 20px;

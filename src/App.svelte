@@ -14,10 +14,10 @@
 
 <div class="main-card">
 	<div class="row">
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex change-button">
 			<button class="test-game" on:click={handleClickTrue()}>Test Game</button>
 		</div>
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex">
 			<button class="input-game" on:click={handleClickFalse()}>İnput Game</button>
 		</div>
 	</div>
@@ -58,5 +58,10 @@
 	margin-top: 20px;
 	border-radius: 10px;
 	background-color: #F7F5F2;
+}
+.change-button{
+	justify-content: center;
+	align-items: center;
+	display: flex;
 }
 </style>

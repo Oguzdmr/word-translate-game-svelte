@@ -14,6 +14,26 @@
     $: reset = () => {
         index = 0
     }
+
+    const swalFunction = (option) => {
+        if(option === words[index].correctOption){
+            Swal.fire({
+                icon: 'success',
+                title: 'Doğru Cevap',
+                text: 'Doğru Cevap: ' + words[index].correctOption,
+            }).then(function() {
+                handleClick() ;
+            })
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Yanlış Cevap',
+                text: 'Doğru Cevap: ' + words[index].correctOption,
+            }).then(function() {
+                handleClick() ;
+            })
+        }
+    }
 </script>
 
 
@@ -28,113 +48,30 @@
     </div>
    
 <div class="col-md-6 col-lg-6">
-    <div class="card-option" on:click={() => {
-         
-        if(words[index].option1 === words[index].correctOption){
-            Swal.fire({
-            icon: 'success',
-            title: 'Doğru Cevap',
-            text: 'Doğru Cevap: ' + words[index].correctOption,
-            }).then(function() {
-                handleClick() ;
-            })
-        }
-        else{
-            Swal.fire({
-            icon: 'error',
-            title: 'Yanlış Cevap',
-            text: 'Doğru Cevap: ' + words[index].correctOption,
-            }).then(function() {
-                handleClick() ;
-            })
-           
-        }
-        }} >
+    <div class="card-option" on:click={() => {swalFunction(words[index].option1)}} >
         <h5>{words[index].option1}</h5>
     </div>
 </div>
 <div class="col-md-6 col-lg-6">
-    <div class="card-option" on:click={() => {
-
-        if(words[index].option2 === words[index].correctOption){
-            Swal.fire({
-            icon: 'success',
-            title: 'Doğru Cevap',
-            text: 'Doğru Cevap: ' + words[index].correctOption,
-            }).then(function() {
-                handleClick() ;
-            })
-            
-        }
-        else{
-            Swal.fire({
-            icon: 'error',
-            title: 'Yanlış Cevap',
-            text: 'Doğru Cevap: ' + words[index].correctOption,
-            }).then(function() {
-                handleClick() ;
-            })
-        }
-        }} >
+    <div class="card-option" on:click={() => {swalFunction(words[index].option2)}} >
         <h5>{words[index].option2}</h5>
     </div>
 </div>
 <div class="col-md-6 col-lg-6">
-    <div class="card-option" on:click={() => {
-
-        if(words[index].option3 === words[index].correctOption){
-            Swal.fire({
-            icon: 'success',
-            title: 'Doğru Cevap',
-            text: 'Doğru Cevap: ' + words[index].correctOption,
-            }).then(function() {
-                handleClick() ;
-            })
-        }
-        else{
-            Swal.fire({
-            icon: 'error',
-            title: 'Yanlış Cevap',
-            text: 'Doğru Cevap: ' + words[index].correctOption,
-            }).then(function() {
-                handleClick() ;
-            })
-        }
-        }} >
+    <div class="card-option" on:click={() => {swalFunction(words[index].option3)}} >
         <h5>{words[index].option3}</h5>
     </div>
 </div>
 <div class="col-md-6 col-lg-6">
-    <div class="card-option"  on:click={() => {
-        
-        if(words[index].option4 === words[index].correctOption){
-            Swal.fire({
-            icon: 'success',
-            title: 'Doğru Cevap',
-            text: 'Doğru Cevap: ' + words[index].correctOption,
-            }).then(function() {
-                handleClick() ;
-            })
-        }
-        else{
-            Swal.fire({
-            icon: 'error',
-            title: 'Yanlış Cevap',
-            text: 'Doğru Cevap: ' + words[index].correctOption,
-            }).then(function() {
-                handleClick() ;
-            })
-        }
-        }} >
-        <h5>{words[index].option4} </h5>
-        
+    <div class="card-option"  on:click={() => {swalFunction(words[index].option4)}} >
+        <h5>{words[index].option4} </h5>    
     </div>
 </div>
 
 </div>
 {:else}
     <h5>Başka Soru Bulunmamaktadır.</h5>
-    <button on:click={reset}>Yeniden Çalış</button>
+    <button class="button-redirect" on:click={reset}>Yeniden Çalış</button>
 {/if}
 
 
@@ -167,5 +104,17 @@
         position: relative;
         justify-content: center;
         align-items: center;
+    }
+    .button-redirect{
+        width: 200px;
+        height: 50px;
+        margin-left: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        background-color: #F56D91;
+        align-items: center;
+        color:white;
+        justify-content: center;
+        display: flex;
     }
 </style>
