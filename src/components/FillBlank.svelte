@@ -62,7 +62,7 @@ Store.subscribe((data)=>{
 </div>
 {:else}
     <h4>Puanınız: {scor}</h4>
-    <h5>Başka Soru Bulunmamaktadır.</h5>
+    <h5>Oyun Bitti</h5>
     <button class="button-redirect" on:click={reset}>Yeniden Çalış</button>
 {/if}
 
@@ -90,10 +90,15 @@ Store.subscribe((data)=>{
         color: black;
         background-color: white;
     }
+    h4{
+        margin-top: 20px;
+    }
     h5{
         position: relative;
         justify-content: center;
         align-items: center;
+        border: #F56D91;
+        color: black;
     }
     .button-redirect{
         width: 200px;

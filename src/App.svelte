@@ -3,22 +3,28 @@
 	import FillBlank from "./components/FillBlank.svelte"
 
 	let test = true
-
+	let color1 = "#F56D91"
+	let color2 = "#F7F5F2"
 	$: handleClickTrue = () =>{
 		test = true
+		color1 = "#F56D91"
+		color2 = "#F7F5F2"
 	}
 	$: handleClickFalse = () =>{
 		test = false
+		color1 = "#F7F5F2"
+		color2 = "#F56D91"
 	}
 </script>
 
+
 <div class="main-card">
 	<div class="row">
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex change-button">
-			<button class="test-game" on:click={handleClickTrue()}>Test Game</button>
+		<div class="col-6 col-lg-6 change-button">
+			<button class="test-game" style="--theme-color:{color1}" on:click={handleClickTrue()}>Test Game</button>
 		</div>
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex">
-			<button class="input-game" on:click={handleClickFalse()}>İnput Game</button>
+		<div class="col-6 change-button">
+			<button class="input-game" style="--theme-color:{color2}" on:click={handleClickFalse()}>İnput Game</button>
 		</div>
 	</div>
 	{#if test}
@@ -47,21 +53,26 @@
 	width: 200px;
 	height: 50px;
 	margin-left: 20px;
+	margin-right: 20px;
 	margin-top: 20px;
 	border-radius: 10px;
-	background-color: #F7F5F2;
+	background-color: var(--theme-color);
+
 }
 .input-game{
 	width: 200px;
 	height: 50px;
 	margin-left: 20px;
+	margin-right: 20px;
 	margin-top: 20px;
 	border-radius: 10px;
-	background-color: #F7F5F2;
+	background-color: var(--theme-color);
+
 }
 .change-button{
 	justify-content: center;
 	align-items: center;
 	display: flex;
+	flex-direction: row;
 }
 </style>

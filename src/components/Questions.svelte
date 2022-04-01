@@ -4,6 +4,7 @@
 
     let words = []
 	let index = 0
+    let scor = 0
 
 	Store.subscribe((data)=>{
 		words = data;
@@ -13,10 +14,12 @@
     }
     $: reset = () => {
         index = 0
+        scor=0
     }
 
     const swalFunction = (option) => {
         if(option === words[index].correctOption){
+            scor += 10
             Swal.fire({
                 icon: 'success',
                 title: 'Doğru Cevap',
@@ -25,6 +28,7 @@
                 handleClick() ;
             })
         }else{
+            scor -= 5
             Swal.fire({
                 icon: 'error',
                 title: 'Yanlış Cevap',
@@ -68,9 +72,11 @@
     </div>
 </div>
 
+<h4>Scor: {scor}</h4>
 </div>
 {:else}
-    <h5>Başka Soru Bulunmamaktadır.</h5>
+    <h4>Puanınız: {scor}</h4>
+    <h5>Oyun Bitti</h5>
     <button class="button-redirect" on:click={reset}>Yeniden Çalış</button>
 {/if}
 
@@ -100,10 +106,15 @@
         border-radius: 30px;
         margin-top: 20px;
     }
+    h4{
+        margin-top: 20px;
+    }
     h5{
         position: relative;
         justify-content: center;
         align-items: center;
+        border: #F56D91;
+        color: black;
     }
     .button-redirect{
         width: 200px;
